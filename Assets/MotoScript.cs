@@ -1,0 +1,56 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEditor;
+using UnityEngine;
+
+public class MotoScript : MonoBehaviour
+
+{
+    Vector2 direction = Vector2.right;
+    public float speed = 1;
+    
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        speed = 1;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            direction = Vector2.right;
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+            speed = 1;
+        }
+        else if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            direction = Vector2.left;
+            transform.rotation = Quaternion.Euler(0, 0, 180);
+            speed = 2;
+
+        }
+        else if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            direction = Vector2.up;
+            transform.rotation = Quaternion.Euler(0, 0, 90);
+            speed = 3;
+        }
+        else if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            direction = Vector2.down;
+            transform.rotation = Quaternion.Euler(0, 0, 270);
+            speed = 4;
+        }
+    }
+
+        void FixedUpdate()
+        {
+            this.transform.position = new Vector3(
+                this.transform.position.x + (direction.x / 2) * (speed / 2),
+                this.transform.position.y + (direction.y / 2) * (speed / 2),
+                0);
+        }
+    }
