@@ -23,26 +23,21 @@ public class MotoScript : MonoBehaviour
         {
             direction = Vector2.right;
             transform.rotation = Quaternion.Euler(0, 0, 0);
-            speed = 1;
         }
         else if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             direction = Vector2.left;
             transform.rotation = Quaternion.Euler(0, 0, 180);
-            speed = 2;
-
         }
         else if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             direction = Vector2.up;
             transform.rotation = Quaternion.Euler(0, 0, 90);
-            speed = 3;
         }
         else if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             direction = Vector2.down;
             transform.rotation = Quaternion.Euler(0, 0, 270);
-            speed = 4;
         }
     }
 
