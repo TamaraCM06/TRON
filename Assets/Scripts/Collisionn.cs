@@ -19,14 +19,7 @@ public class Collisionn : MonoBehaviour
         e.gameObject.SetActive(true);
         e.transform.position = this.transform.position;
         this.gameObject.SetActive(false);
-        afterTrigger();
-
-
-        void afterTrigger()
-        {
-            Thread.Sleep(3000);
-            e.gameObject.SetActive(false);
-        }
+        e.gameObject.SetActive(false);
     }
 
 } 
