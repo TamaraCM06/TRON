@@ -6,9 +6,11 @@ using UnityEngine;
 public class MotoScript : MonoBehaviour
 
 {
-    Vector2 direction = Vector2.right;
     public float speed = 1;
-    
+
+
+    Vector2 direction = Vector2.right;
+
 
     // Start is called before the first frame update
     void Start()
@@ -41,11 +43,17 @@ public class MotoScript : MonoBehaviour
         }
     }
 
-        void FixedUpdate()
-        {
-            this.transform.position = new Vector3(
-                this.transform.position.x + (direction.x / 2) * (speed / 2),
-                this.transform.position.y + (direction.y / 2) * (speed / 2),
-                0);
-        }
+    void FixedUpdate()
+    {
+        this.transform.position = new Vector3(
+            this.transform.position.x + (direction.x / 2) * (speed / 2),
+            this.transform.position.y + (direction.y / 2) * (speed / 2),
+            0);
     }
+
+
+
+
+
+
+}
