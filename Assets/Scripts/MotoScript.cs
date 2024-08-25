@@ -2,23 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MotoScript : MonoBehaviour
 
 {
     public float speed = 1;
+    public Image fuelBar;
+    public float fuel, maxfuel;
+    public float movingCost;
 
 
     Vector2 direction = Vector2.right;
 
 
-    // Start is called before the first frame update
     void Start()
     {
         speed = 1;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.RightArrow))
@@ -41,6 +43,9 @@ public class MotoScript : MonoBehaviour
             direction = Vector2.down;
             transform.rotation = Quaternion.Euler(0, 0, 270);
         }
+        fuel -= movingCost * Time.deltaTime;
+        if (fuel<0) fuel = 0;
+        fuelBar.fillAmount = fuel / maxfuel;
     }
 
     void FixedUpdate()
