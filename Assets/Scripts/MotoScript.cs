@@ -16,7 +16,7 @@ public class MotoScript : MonoBehaviour
     Vector2 direction = Vector2.right;
 
 
-    void Start()
+    public void Start()
     {
         speed = 1;
     }
@@ -44,7 +44,7 @@ public class MotoScript : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, 0, 270);
         }
         fuel -= movingCost * Time.deltaTime;
-        if (fuel<0) fuel = 0;
+        if (fuel < 0) fuel = 0;
         fuelBar.fillAmount = fuel / maxfuel;
     }
 
