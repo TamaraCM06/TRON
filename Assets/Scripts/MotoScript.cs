@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,22 +8,28 @@ using UnityEngine.UI;
 public class MotoScript : MonoBehaviour
 
 {
-    public float speed = 1;
+    [SerializeField] public float fuel, maxfuel;
     public Image fuelBar;
-    public float fuel, maxfuel;
     public float movingCost;
+    public float speed = 1;
 
+    public Vector2 direction = Vector2.right;
 
-    Vector2 direction = Vector2.right;
+    
 
-
-    public void Start()
+    private void Start()
     {
         speed = 1;
     }
 
     void Update()
     {
+        //if (this.GetComponent<Collisionn>().lives != 3)
+        //{
+        //    speed = 1;
+        //    fuel = 100;
+        //    fuelBar.fillAmount = fuel / maxfuel;
+        //}
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             direction = Vector2.right;
@@ -55,10 +62,5 @@ public class MotoScript : MonoBehaviour
             this.transform.position.y + (direction.y / 2) * (speed / 2),
             0);
     }
-
-
-
-
-
 
 }

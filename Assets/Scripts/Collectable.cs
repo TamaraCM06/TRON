@@ -103,7 +103,7 @@ public class Collectable : MonoBehaviour
                 }
                 else if (stellaSpawned < 2)
                 {
-                    Instantiate(stellaPrefab, allCells[whichSpawn]);
+                    Instantiate(hypervelPrefab, allCells[whichSpawn]);
                     Debug.Log("hypervelPower spawned in " + allCells[whichSpawn].name);
                     hypervelSpawned++;
                 }

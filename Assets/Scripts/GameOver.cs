@@ -6,20 +6,9 @@ using UnityEngine.UI;
 
 public class GameOver : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] GameObject GameOverScreen;
+        public void MainMenuRestart()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void MainMenuRestart()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        GameOverScreen.SetActive(false);
     }
 }
