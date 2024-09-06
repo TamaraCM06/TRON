@@ -12,10 +12,14 @@ public class MotoScript : MonoBehaviour
     public Image fuelBar;
     public float movingCost;
     public float speed = 1;
+    LinkedListMoto Stella ;
 
     public Vector2 direction = Vector2.right;
 
-    
+    LinkedListMoto stella = new LinkedListMoto();
+
+
+
 
     private void Start()
     {
@@ -24,12 +28,6 @@ public class MotoScript : MonoBehaviour
 
     void Update()
     {
-        //if (this.GetComponent<Collisionn>().lives != 3)
-        //{
-        //    speed = 1;
-        //    fuel = 100;
-        //    fuelBar.fillAmount = fuel / maxfuel;
-        //}
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             direction = Vector2.right;
@@ -49,6 +47,11 @@ public class MotoScript : MonoBehaviour
         {
             direction = Vector2.down;
             transform.rotation = Quaternion.Euler(0, 0, 270);
+        }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            stella.AddStellaLight(new Declarations.Stella("stella"), this.transform.position);
+            stella.displayList();
         }
         fuel -= movingCost * Time.deltaTime;
         if (fuel < 0) fuel = 0;

@@ -6445,6 +6445,7 @@ GameObject:
   - component: {fileID: 1001952609}
   - component: {fileID: 1001952607}
   - component: {fileID: 1001952610}
+  - component: {fileID: 1001952611}
   m_Layer: 0
   m_Name: Moto
   m_TagString: Untagged
@@ -6634,7 +6635,21 @@ MonoBehaviour:
   GameOverScreen: {fileID: 477235463}
   powersBar: {fileID: 1610593400}
   shieldPrefab: {fileID: 956390126022018028, guid: 22fb4d7a0d921e84185b77d6c2f20827, type: 3}
-  hypervelPrefab: {fileID: 0}
+  hypervelPrefab: {fileID: 858649503668612571, guid: 62b01968c4cf5a14fa4e6c90508155b8, type: 3}
+  stellaLight: {fileID: 1066615196606778924, guid: ce230cd7d079aa64496e0fa94d9e14ee, type: 3}
+--- !u!114 &1001952611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1001952604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f51e67f140c28604d85bbd1c0594f455, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionStellaLight: {fileID: 1001952610}
 --- !u!224 &1021337238 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1592076247708627810, guid: c8201246da3215344b778c6aa9236d99, type: 3}
@@ -11563,6 +11578,7 @@ MonoBehaviour:
   powersBar: {fileID: 0}
   shieldPrefab: {fileID: 0}
   hypervelPrefab: {fileID: 0}
+  stellaLight: {fileID: 0}
 --- !u!1001 &1702371652
 PrefabInstance:
   m_ObjectHideFlags: 0

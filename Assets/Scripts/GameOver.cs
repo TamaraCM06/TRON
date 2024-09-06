@@ -6,9 +6,5 @@ using UnityEngine.UI;
 
 public class GameOver : MonoBehaviour
 {
-    [SerializeField] GameObject GameOverScreen;
-        public void MainMenuRestart()
-    {
-        GameOverScreen.SetActive(false);
-    }
+
 }

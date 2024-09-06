@@ -27,13 +27,14 @@ public class Collisionn : MonoBehaviour
     [SerializeField] GameObject powersBar;
     [SerializeField] GameObject shieldPrefab;
     [SerializeField] GameObject hypervelPrefab;
-
+    public GameObject stellaLight;
 
 
 
 
     public void OnTriggerEnter2D(Collider2D other)
     {
+        
         //Si moto choca con map borders
         if (other is BoxCollider2D)
         {
