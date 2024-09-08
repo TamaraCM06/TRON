@@ -9,40 +9,37 @@ using System.Numerics;
 using UnityEditor;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
+using Moto;
 
 
 public class Collisionn : MonoBehaviour
 {
-    public GameObject explosion;
     public Transform bombI;
     public Transform fuelI;
     public Transform stellaI;
     public Transform shieldI;
     public Transform hypervelI;
     public int lives = 3;
-    [SerializeField] GameObject heart3;
-    [SerializeField] GameObject heart2;
-    [SerializeField] GameObject heart1;
-    [SerializeField] GameObject GameOverScreen;
+    public GameObject heart3;
+    public GameObject heart2;
+    public GameObject heart1;
+    public GameObject GameOverScreen;
     [SerializeField] GameObject powersBar;
     [SerializeField] GameObject shieldPrefab;
     [SerializeField] GameObject hypervelPrefab;
     public GameObject stellaLight;
+    public Collider2D other;
 
 
 
 
     public void OnTriggerEnter2D(Collider2D other)
     {
-        
+
         //Si moto choca con map borders
         if (other is BoxCollider2D)
         {
-            GameObject e = Instantiate(explosion) as GameObject;
-            e.transform.SetParent(other.transform, true);
-            e.gameObject.SetActive(true);
-            e.transform.position = this.transform.position;
-            e.gameObject.SetActive(false);
+
 
             this.gameObject.SetActive(false);
             Debug.Log("Died");
@@ -52,8 +49,8 @@ public class Collisionn : MonoBehaviour
                 heart3.gameObject.SetActive(false);
                 this.transform.SetPositionAndRotation(new UnityEngine.Vector3(-47, -10, 0), UnityEngine.Quaternion.Euler(new UnityEngine.Vector3(0, 0, 0)));
                 this.gameObject.SetActive(true);
-                this.GetComponent<MotoScript>().direction = UnityEngine.Vector2.right;
-                this.GetComponent<MotoScript>().fuel = 100;
+                this.GetComponent<Moto.MotoScript>().direction = UnityEngine.Vector2.right;
+                this.GetComponent<Moto.MotoScript>().fuel = 100;
 
                 lives--;
             }
@@ -62,8 +59,8 @@ public class Collisionn : MonoBehaviour
                 heart2.gameObject.SetActive(false);
                 this.transform.SetPositionAndRotation(new UnityEngine.Vector3(-47, -10, 0), UnityEngine.Quaternion.Euler(new UnityEngine.Vector3(0, 0, 0)));
                 this.gameObject.SetActive(true);
-                this.GetComponent<MotoScript>().direction = UnityEngine.Vector2.right;
-                this.GetComponent<MotoScript>().fuel = 100;
+                this.GetComponent<Moto.MotoScript>().direction = UnityEngine.Vector2.right;
+                this.GetComponent<Moto.MotoScript>().fuel = 100;
 
                 lives--;
             }
@@ -79,7 +76,6 @@ public class Collisionn : MonoBehaviour
         {
             if (other.transform.childCount != 0)
             {
-                //Debug.Log(other.GetInstanceID());
                 Debug.Log(other.transform.GetChild(0));
 
                 bombI = other.transform.Find("bomb(Clone)");
@@ -100,8 +96,8 @@ public class Collisionn : MonoBehaviour
                         heart3.gameObject.SetActive(false);
                         this.transform.SetPositionAndRotation(new UnityEngine.Vector3(-47, -10, 0), UnityEngine.Quaternion.Euler(new UnityEngine.Vector3(0, 0, 0)));
                         this.gameObject.SetActive(true);
-                        this.GetComponent<MotoScript>().direction = UnityEngine.Vector2.right;
-                        this.GetComponent<MotoScript>().fuel = 100;
+                        this.GetComponent<Moto.MotoScript>().direction = UnityEngine.Vector2.right;
+                        this.GetComponent<Moto.MotoScript>().fuel = 100;
 
 
                         lives--;
@@ -111,8 +107,8 @@ public class Collisionn : MonoBehaviour
                         heart2.gameObject.SetActive(false);
                         this.transform.SetPositionAndRotation(new UnityEngine.Vector3(-47, -10, 0), UnityEngine.Quaternion.Euler(new UnityEngine.Vector3(0, 0, 0)));
                         this.gameObject.SetActive(true);
-                        this.GetComponent<MotoScript>().direction = UnityEngine.Vector2.right;
-                        this.GetComponent<MotoScript>().fuel = 100;
+                        this.GetComponent<Moto.MotoScript>().direction = UnityEngine.Vector2.right;
+                        this.GetComponent<Moto.MotoScript>().fuel = 100;
 
                         lives--;
                     }
@@ -128,12 +124,17 @@ public class Collisionn : MonoBehaviour
                 {
                     Debug.Log("FuelItem here!");
                     other.transform.DetachChildren();
-                    this.GetComponent<MotoScript>().fuel += UnityEngine.Random.Range(10, 20);
+                    this.GetComponent<Moto.MotoScript>().fuel += UnityEngine.Random.Range(10, 20);
                 }
                 else if (stellaI != null)
                 {
-                    Debug.Log("StellaItem here");
+                    Debug.Log("StellaItem here!");
                     other.transform.DetachChildren();
+                    this.GetComponent<MotoScript>().stellaValue += UnityEngine.Random.Range(1, 10);
+                    if ((this.GetComponent<MotoScript>().stellaValue + UnityEngine.Random.Range(1, 10)) >= 10)
+                    {
+                        this.GetComponent<MotoScript>().stellaValue = 10;
+                    }
                 }
                 else if (shieldI != null)
                 {
@@ -218,19 +219,35 @@ public class Collisionn : MonoBehaviour
             }
         }
 
+
     }
+
     IEnumerator Invencible()
-    { 
-        print("Before 5 sec test");
+    {
+        Invencibilidad(true);
         yield return new WaitForSeconds(5);
-        print("After 5 sec test");
+        Invencibilidad(false);
     }
     IEnumerator HyperVelocity()
     {
+        this.GetComponent<MotoScript>().speed += UnityEngine.Random.Range(1, 5);
         yield return new WaitForSeconds(5);
-        print("After 5 sec test hypervel");
+        this.GetComponent<MotoScript>().speed = 1;
     }
-
-
-} 
+    void Invencibilidad(bool shield)
+    {
+        if (shield == true)
+        {
+            if (bombI != null)
+            {
+                print("bombItem here - Invencible");
+            }
+            else if (other is BoxCollider2D)
+            {
+                print("border reached - Invencible");
+            }
+            //stella collision
+        }
+    }
+}
    
