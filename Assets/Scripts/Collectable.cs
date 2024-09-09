@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Collectable : MonoBehaviour
 {
-    [SerializeField] GameObject stellaPrefab;
-    [SerializeField] GameObject fuelPrefab;
-    [SerializeField] GameObject bombPrefab;
-    [SerializeField] GameObject hypervelPrefab;
-    [SerializeField] GameObject shieldPrefab;
+    public GameObject stellaPrefab;
+    public GameObject fuelPrefab;
+    public GameObject bombPrefab;
+    public GameObject hypervelPrefab;
+    public GameObject shieldPrefab;
     [SerializeField] Transform[] allCells;
 
     void Start()

@@ -8,24 +8,25 @@ using UnityEngine.UI;
 using static UnityEngine.RuleTile.TilingRuleOutput;
 
 namespace Moto {
+
     public class MotoScript : MonoBehaviour
 
     {
-        public UnityEngine.Transform stellaCube;
         public Image fuelBar;
         public float movingCost;
         public float speed = 1;
         public int stellaValue = 3;
-        int cubitoCount = 0;
+        public int cubitoCount = 0;
 
         public Vector2 direction = Vector2.right;
-        [SerializeField] public float fuel, maxfuel;
-        [SerializeField] UnityEngine.Transform panell;
+
 
         public MyLinkedList<UnityEngine.Transform> stella;
+        public UnityEngine.Transform stellaCube;
 
-        Nodo<UnityEngine.Transform> stellaDato;
 
+        [SerializeField] public float fuel, maxfuel;
+        public UnityEngine.Transform panell;
 
         private void Start()
         {
@@ -111,16 +112,17 @@ namespace Moto {
             if (cubitoCount != stellaValue*stellaValue)
             {
 
-                UnityEngine.Transform cubito = Instantiate(this.stellaCube, panell).transform;
-                cubito.position = transform.position - transform.right * 9;
-                stella.Agregar(cubito);
+                UnityEngine.Transform cubito = Instantiate(stellaCube, panell).transform;
+                cubito.position = this.transform.position - this.transform.right * 9;
+                this.stella.Agregar(cubito);
 
                 cubitoCount++;
             }
             else
             {
                 stella.Borrar();
-                panell.GetChild(1).SetParent(null);
+                panell.GetChild(1).SetParent(this.transform);
+                Destroy(this.transform.GetChild(0).gameObject);
                 cubitoCount--;
             }
             if ((direction == Vector2.right) || (direction == Vector2.left))

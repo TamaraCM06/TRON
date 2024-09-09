@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEditor.Experimental.GraphView;
+using CLinkedList;
+using System.Collections;
+using UnityEngine.UI;
 
 namespace CLinkedList
 {
@@ -45,20 +49,6 @@ namespace CLinkedList
             Primero = Primero.Siguiente;
             size--;
         }
-
-        //public void Ver()
-        //{
-        //    Console.WriteLine("\nPrimero" + this.Primero.Dato);
-        //    Console.WriteLine("Ultimo" + this.Ultimo.Dato);
-
-        //    Nodo<T> nodo = this.Primero;
-        //    while (nodo.Siguiente  != null)
-        //    {
-        //        Console.WriteLine(nodo.Dato);
-        //        nodo = nodo.Siguiente;
-        //    }
-        //    Console.WriteLine(nodo.Dato);
-        //}
 
         public void Ver()
         {
