@@ -37,6 +37,7 @@ namespace Moto {
         void Update()
         {
             Corre();
+            this.GetComponent<Collisionn>().powerChange();
 
             if (Input.GetKeyDown(KeyCode.RightArrow))
             {
@@ -59,10 +60,6 @@ namespace Moto {
                 transform.rotation = Quaternion.Euler(0, 0, 270);
                 stella.Ver();
             }
-
-                
-           
-
             fuel -= movingCost * Time.deltaTime;
             if (fuel < 0) fuel = 0;
             fuelBar.fillAmount = fuel / maxfuel;
@@ -97,6 +94,7 @@ namespace Moto {
                     this.GetComponent<Collisionn>().lives--;
                 }
             }
+
         }
 
         void FixedUpdate()
@@ -114,7 +112,7 @@ namespace Moto {
 
                 UnityEngine.Transform cubito = Instantiate(stellaCube, panell).transform;
                 cubito.position = this.transform.position - this.transform.right * 9;
-                this.stella.Agregar(cubito);
+                this.stella.Agregar("cubito");
 
                 cubitoCount++;
             }
@@ -127,11 +125,11 @@ namespace Moto {
             }
             if ((direction == Vector2.right) || (direction == Vector2.left))
             {
-                stellaCube.GetComponent<RectTransform>().sizeDelta = new Vector2(60, 30);
+                this.stellaCube.GetComponent<RectTransform>().sizeDelta = new Vector2(60, 30);
             }
             else if ((direction == Vector2.up) || (direction == Vector2.down))
             {
-                stellaCube.GetComponent<RectTransform>().sizeDelta = new Vector2(30, 60);
+                this.stellaCube.GetComponent<RectTransform>().sizeDelta = new Vector2(30, 60);
             }
 
         }

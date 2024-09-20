@@ -13,8 +13,8 @@ namespace CLinkedList
     public class MyLinkedList<T>
     {
 
-        public Nodo<T> Primero { get; private set; }
-        public Nodo<T> Ultimo { get; private set; }
+        public Nodo<string> Primero { get; private set; }
+        public Nodo<string> Ultimo { get; private set; }
         public int size { get; private set; }
 
 
@@ -25,9 +25,9 @@ namespace CLinkedList
         }
 
 
-        public void Agregar(T dato)
+        public void Agregar(string dato)
         {
-            Nodo<T> newNodo = new Nodo<T>(dato);
+            Nodo<string> newNodo = new Nodo<string>(dato);
 
             if (Primero == null)
             {
@@ -52,7 +52,7 @@ namespace CLinkedList
 
         public void Ver()
         {
-            Nodo<T> actual = Primero;
+            Nodo<string> actual = Primero;
             while (actual != null)
             {
                 Debug.Log(actual.Dato.ToString());

@@ -28,19 +28,14 @@ namespace Moto
         public GameObject heart1;
         public GameObject GameOverScreen;
         public GameObject stellaLight;
-        [SerializeField] GameObject powersBar;
-        [SerializeField] GameObject shieldPrefab;
-        [SerializeField] GameObject hypervelPrefab;
+        public GameObject powersBar;
+        public GameObject shieldPrefab;
+        public GameObject hypervelPrefab;
         public Collider2D other;
         public int lives = 3;
 
-        public itemQueue<UnityEngine.Transform> Items;
-        public powerStack<UnityEngine.Transform> Powers;
-        public UnityEngine.Transform bombInstance;
-        public UnityEngine.Transform fuelInstance;
-        public UnityEngine.Transform stellaInstance;
-        public UnityEngine.Transform shieldInstance;
-        public UnityEngine.Transform hypervelInstance;
+        public itemQueue Items = new itemQueue();
+        public powerStack Powers = new powerStack();
 
 
         public void OnTriggerEnter2D(Collider2D other)
@@ -101,11 +96,11 @@ namespace Moto
                     {
                         
                         Debug.Log("BombItem here");
-                        //UnityEngine.Transform bomb = Instantiate(this.bombInstance, other.transform).transform;
-                        //Items.enqueue(bomb);
-                        //Items.getfirstItem();
+                        Items.enqueue("bomb in queue");
+                        Items.getfirstItem();
                         other.transform.DetachChildren();
                         this.gameObject.SetActive(false);
+
                         if (lives == 3)
                         {
                             heart3.gameObject.SetActive(false);
@@ -138,31 +133,28 @@ namespace Moto
                     else if (fuelI != null)
                     {
                         Debug.Log("FuelItem here!");
-                        //UnityEngine.Transform fuel = Instantiate(this.fuelInstance, other.transform).transform;
-                        //Items.enqueue(fuel);
-                        //Items.getfirstItem();
+                        Items.enqueue("fuel in queue");
+                        Items.getfirstItem();
                         other.transform.DetachChildren();
                         this.GetComponent<Moto.MotoScript>().fuel += UnityEngine.Random.Range(10, 20);
                     }
                     else if (stellaI != null)
                     {
                         Debug.Log("StellaItem here!");
-                        //UnityEngine.Transform stella = Instantiate(this.stellaInstance, other.transform).transform;
-                        //Items.enqueue(stella);
-                        //Items.getfirstItem();
+                        Items.enqueue("stella in queue");
+                        Items.getfirstItem();
                         other.transform.DetachChildren();
                         this.GetComponent<MotoScript>().stellaValue += UnityEngine.Random.Range(1, 10);
                         if ((this.GetComponent<MotoScript>().stellaValue + UnityEngine.Random.Range(1, 10)) >= 10)
                         {
                             this.GetComponent<MotoScript>().stellaValue = 10;
                         }
+
                     }
                     else if (shieldI != null)
                     {
                         StartCoroutine("Invencible"); // aplicar cuando space
-                        //UnityEngine.Transform shield = Instantiate(this.shieldInstance, other.transform).transform;
-                        //Powers.push(shield);
-                        //Powers.peek();
+                        Powers.push("shield in stack");
                         other.transform.DetachChildren();
                         if (powersBar.transform.GetChild(4).childCount != 0)
                         {
@@ -205,9 +197,7 @@ namespace Moto
                     else if (hypervelI != null)
                     {
                         StartCoroutine("HyperVelocity"); // aplicar cuando space esto no va aqui xd
-                        //UnityEngine.Transform hypervel = Instantiate(this.hypervelInstance, other.transform).transform;
-                        //Powers.push(hypervel);
-                        //Powers.peek();
+                        Powers.push("hypervel in stack");
                         other.transform.DetachChildren();
                         if (powersBar.transform.GetChild(4).childCount != 0)
                         {
@@ -251,6 +241,82 @@ namespace Moto
             }
 
 
+        }
+
+        public void powerChange()
+        {
+            if (Input.GetKeyDown(KeyCode.C))
+            {
+                if (powersBar.transform.GetChild(4).childCount != 0)
+                {
+                    if (hypervelI != null)
+                    {
+                        Instantiate(hypervelPrefab, powersBar.transform.GetChild(0));
+                    }
+                    else
+                    {
+                        Instantiate(shieldPrefab, powersBar.transform.GetChild(0));
+                    }
+
+                    powersBar.transform.GetChild(4).DetachChildren();
+
+                    if (powersBar.transform.GetChild(3).childCount != 0)
+                    {
+                        if (hypervelI != null)
+                        {
+                            Instantiate(hypervelPrefab, powersBar.transform.GetChild(4));
+                        }
+                        else
+                        {
+                            Instantiate(shieldPrefab, powersBar.transform.GetChild(4));
+                        }
+
+                        powersBar.transform.GetChild(3).DetachChildren();
+
+                        if (powersBar.transform.GetChild(2).childCount != 0)
+                        {
+                            if (hypervelI != null)
+                            {
+                                Instantiate(hypervelPrefab, powersBar.transform.GetChild(3));
+                            }
+                            else
+                            {
+                                Instantiate(shieldPrefab, powersBar.transform.GetChild(3));
+                            }
+
+                            powersBar.transform.GetChild(2).DetachChildren();
+
+                            if (powersBar.transform.GetChild(1).childCount != 0)
+                            {
+                                if (hypervelI != null)
+                                {
+                                    Instantiate(hypervelPrefab, powersBar.transform.GetChild(2));
+                                }
+                                else
+                                {
+                                    Instantiate(shieldPrefab, powersBar.transform.GetChild(2));
+                                }
+
+                                powersBar.transform.GetChild(1).DetachChildren();
+
+                                if (powersBar.transform.GetChild(0).childCount != 0)
+                                {
+                                    if (hypervelI != null)
+                                    {
+                                        Instantiate(hypervelPrefab, powersBar.transform.GetChild(1));
+                                    }
+                                    else
+                                    {
+                                        Instantiate(shieldPrefab, powersBar.transform.GetChild(1));
+                                    }
+
+                                    powersBar.transform.GetChild(0).DetachChildren();
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         IEnumerator Invencible()

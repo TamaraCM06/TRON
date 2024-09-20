@@ -6832,7 +6832,6 @@ GameObject:
   - component: {fileID: 1001952609}
   - component: {fileID: 1001952607}
   - component: {fileID: 1001952610}
-  - component: {fileID: 1001952611}
   m_Layer: 0
   m_Name: MotoPlayer
   m_TagString: Untagged
@@ -7028,24 +7027,6 @@ MonoBehaviour:
   hypervelPrefab: {fileID: 858649503668612571, guid: 62b01968c4cf5a14fa4e6c90508155b8, type: 3}
   other: {fileID: 0}
   lives: 3
-  bombInstance: {fileID: 4612772673418754643, guid: 046f7789c407e22408836b0525bd88ba, type: 3}
-  fuelInstance: {fileID: 1770472800041857616, guid: 333e92a2dd142e347ae492cbe183c2f1, type: 3}
-  stellaInstance: {fileID: 2606603986139011861, guid: 792c8ec36cfe3f0488f0a9c2488f98a1, type: 3}
-  shieldInstance: {fileID: 3178405918321038903, guid: 22fb4d7a0d921e84185b77d6c2f20827, type: 3}
-  hypervelInstance: {fileID: 9035395748458416217, guid: 62b01968c4cf5a14fa4e6c90508155b8, type: 3}
---- !u!114 &1001952611
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1001952604}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f51e67f140c28604d85bbd1c0594f455, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  collisionStellaLight: {fileID: 1001952610}
 --- !u!1 &1016066088
 GameObject:
   m_ObjectHideFlags: 0
@@ -7087,18 +7068,13 @@ MonoBehaviour:
   heart3: {fileID: 0}
   heart2: {fileID: 0}
   heart1: {fileID: 0}
-  GameOverScreen: {fileID: 0}
+  GameOverScreen: {fileID: 477235463}
   stellaLight: {fileID: 0}
   powersBar: {fileID: 0}
   shieldPrefab: {fileID: 0}
   hypervelPrefab: {fileID: 0}
   other: {fileID: 0}
   lives: 3
-  bombInstance: {fileID: 0}
-  fuelInstance: {fileID: 0}
-  stellaInstance: {fileID: 0}
-  shieldInstance: {fileID: 0}
-  hypervelInstance: {fileID: 0}
   panel: {fileID: 884682170}
 --- !u!61 &1016066090
 BoxCollider2D:
@@ -11415,18 +11391,13 @@ MonoBehaviour:
   heart3: {fileID: 0}
   heart2: {fileID: 0}
   heart1: {fileID: 0}
-  GameOverScreen: {fileID: 0}
+  GameOverScreen: {fileID: 477235463}
   stellaLight: {fileID: 0}
   powersBar: {fileID: 0}
   shieldPrefab: {fileID: 0}
   hypervelPrefab: {fileID: 0}
   other: {fileID: 0}
   lives: 3
-  bombInstance: {fileID: 0}
-  fuelInstance: {fileID: 0}
-  stellaInstance: {fileID: 0}
-  shieldInstance: {fileID: 0}
-  hypervelInstance: {fileID: 0}
   panel: {fileID: 1668833122}
 --- !u!224 &1562213990 stripped
 RectTransform:
@@ -11802,18 +11773,13 @@ MonoBehaviour:
   heart3: {fileID: 0}
   heart2: {fileID: 0}
   heart1: {fileID: 0}
-  GameOverScreen: {fileID: 0}
+  GameOverScreen: {fileID: 477235463}
   stellaLight: {fileID: 0}
   powersBar: {fileID: 0}
   shieldPrefab: {fileID: 0}
   hypervelPrefab: {fileID: 0}
   other: {fileID: 0}
   lives: 3
-  bombInstance: {fileID: 0}
-  fuelInstance: {fileID: 0}
-  stellaInstance: {fileID: 0}
-  shieldInstance: {fileID: 0}
-  hypervelInstance: {fileID: 0}
   panel: {fileID: 192710465}
 --- !u!61 &1595449692
 BoxCollider2D:
@@ -12677,11 +12643,6 @@ MonoBehaviour:
   hypervelPrefab: {fileID: 0}
   other: {fileID: 0}
   lives: 3
-  bombInstance: {fileID: 0}
-  fuelInstance: {fileID: 0}
-  stellaInstance: {fileID: 0}
-  shieldInstance: {fileID: 0}
-  hypervelInstance: {fileID: 0}
 --- !u!1001 &1702371652
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14080,18 +14041,13 @@ MonoBehaviour:
   heart3: {fileID: 0}
   heart2: {fileID: 0}
   heart1: {fileID: 0}
-  GameOverScreen: {fileID: 0}
+  GameOverScreen: {fileID: 477235463}
   stellaLight: {fileID: 0}
   powersBar: {fileID: 0}
   shieldPrefab: {fileID: 0}
   hypervelPrefab: {fileID: 0}
   other: {fileID: 0}
   lives: 3
-  bombInstance: {fileID: 0}
-  fuelInstance: {fileID: 0}
-  stellaInstance: {fileID: 0}
-  shieldInstance: {fileID: 0}
-  hypervelInstance: {fileID: 0}
   panel: {fileID: 279782728}
 --- !u!61 &1954963248
 BoxCollider2D:

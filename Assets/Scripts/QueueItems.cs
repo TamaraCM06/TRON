@@ -10,10 +10,10 @@ using UnityEngine.UI;
 
 namespace CLinkedList
 {
-    public class itemQueue<T>
+    public class itemQueue
     {
-        public Nodo<T> firstItem { get; private set; }
-        public Nodo<T> lastItem { get; private set; }
+        public Nodo<string> firstItem { get; private set; }
+        public Nodo<string> lastItem { get; private set; }
 
         public itemQueue()
         {
@@ -35,9 +35,9 @@ namespace CLinkedList
             }
         }
 
-        public void enqueue(T item)
+        public void enqueue(string item)
         {
-            Nodo<T> newNode = new Nodo<T>(item);
+            Nodo<string> newNode = new Nodo<string>(item);
             if (lastItem == null)
             {
                 firstItem = lastItem = newNode;
@@ -57,15 +57,19 @@ namespace CLinkedList
                 lastItem= null;
             }
         }
-        public T getfirstItem()
+        public string getfirstItem()
         {
-            if (isEmpty())
+            if (isEmpty() == true)
             {
                 Debug.Log("Item Queue is empty");
             }
+            else
+            {
+                Debug.Log(firstItem.Dato.ToString());
+            }
             return firstItem.Dato;
         }
-        public T getlastItem()
+        public string getlastItem()
         {
             if (isEmpty())
             {

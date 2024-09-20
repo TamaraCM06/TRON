@@ -11,9 +11,9 @@ using UnityEditorInternal.VersionControl;
 
 namespace CLinkedList
 {
-    public class powerStack<T>
+    public class powerStack
     {
-        public Nodo<T> firstPower { get; private set; }
+        public Nodo<string> firstPower { get; private set; }
 
         public powerStack()
         {
@@ -34,9 +34,9 @@ namespace CLinkedList
             }
         }
 
-        public void push(T power)
+        public void push(string power)
         {
-            Nodo<T> newNode = new Nodo<T>(power);
+            Nodo<string> newNode = new Nodo<string>(power);
             if (newNode == null)
             {
                 Debug.Log("\nStack Overflow");
@@ -55,7 +55,7 @@ namespace CLinkedList
                 firstPower = firstPower.Siguiente;
             }
         }
-        public T peek()
+        public string peek()
         {
             if (isEmpty())
             {

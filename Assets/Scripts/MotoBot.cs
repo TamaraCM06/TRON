@@ -16,19 +16,27 @@ public class MotoBot : MotoScript
     void Update()
     {
         Corre();
-        //if (waiting == false)
-        //{
-        //    StartCoroutine("decideDirection");
-        //}
+        if ((this.GetComponent<Collisionn>().lives) == 0)
+        {
+            this.gameObject.SetActive(false);
+        }
+        else if (this.GetComponent<Collisionn>().GameOverScreen.activeSelf)
+        {
+            this.gameObject.SetActive(false);
+        }
+        if (this.waiting == false)
+        {
+            StartCoroutine("decideDirection");
+        }
     }
     IEnumerator decideDirection()
     {
         print("initial dir" + this.direction);
-        waiting = true;
+        this.waiting = true;
         yield return new WaitForSeconds(3);
         randomDirection(Random.value);
         print(this.direction);
-        waiting = false;
+        this.waiting = false;
 
     }
 
@@ -36,60 +44,45 @@ public class MotoBot : MotoScript
     {
         if (this.direction == Vector2.up)
         {
-            if (num > 0.00 && num < 0.25)
-            {
-                this.direction = Vector2.right;
-            }
-            else if (num>0.25 && num < 0.50)
+            if (num > 0.00 && num < 0.50)
             {
                 this.direction = Vector2.left;
             }
-            else
+            else if (num>0.50 && num < 1)
             {
                 this.direction = Vector2.up;
             }
+
         }
         if (this.direction == Vector2.right)
         {
-            if (num > 0.00 && num < 0.25)
-            {
-                this.direction = Vector2.up;
-            }
-            else if (num > 0.25 && num < 0.50)
+            if (num > 0.00 && num < 0.50)
             {
                 this.direction = Vector2.down;
             }
-            else
+            else if (num > 0.50 && num < 1)
             {
                 this.direction = Vector2.right;
             }
         }
         if (this.direction == Vector2.left)
         {
-            if (num > 0.00 && num < 0.25)
+            if (num > 0.00 && num < 0.50)
             {
                 this.direction = Vector2.up;
             }
-            else if (num > 0.25 && num < 0.50)
-            {
-                this.direction = Vector2.down;
-            }
-            else
+            else if (num > 0.50 && num < 1)
             {
                 this.direction = Vector2.left;
             }
         }
-        if (this.direction == Vector2.up)
+        if (this.direction == Vector2.down)
         {
-            if (num > 0.00 && num < 0.25)
+            if (num > 0.00 && num < 0.50)
             {
                 this.direction = Vector2.right;
             }
-            else if (num > 0.25 && num < 0.50)
-            {
-                this.direction = Vector2.left;
-            }
-            else
+            else if (num > 0.50 && num < 1)
             {
                 this.direction = Vector2.down;
             }
@@ -97,7 +90,7 @@ public class MotoBot : MotoScript
     }
     new void Corre()
     {
-        if (cubitoCount != stellaValue * stellaValue)
+        if (cubitoCount != stellaValue * stellaValue)   // si la estela no es del tamaño de estela, agregar uno mas
         {
 
             UnityEngine.Transform cubito = Instantiate(stellaCube, panell).transform;
@@ -107,17 +100,20 @@ public class MotoBot : MotoScript
         }
         else
         {
-            panell.GetChild(1).SetParent(this.transform);
-            Destroy(this.transform.GetChild(0).gameObject);
-            cubitoCount--;
+            if (this.gameObject.activeSelf) // si es del tamaño que se espera, y la moto aun esta en pantalla, buscar cubito y eliminarlo
+            {
+                this.panell.GetChild(0).SetParent(this.transform);
+                Destroy(this.transform.GetChild(0).gameObject);
+                cubitoCount--;
+            }
         }
-        if ((direction == Vector2.right) || (direction == Vector2.left))
+        if ((this.direction == Vector2.right) || (this.direction == Vector2.left))
         {
-            stellaCube.GetComponent<RectTransform>().sizeDelta = new Vector2(60, 30);
+            this.stellaCube.GetComponent<RectTransform>().sizeDelta = new Vector2(60, 30);
         }
-        else if ((direction == Vector2.up) || (direction == Vector2.down))
+        else if ((this.direction == Vector2.up) || (this.direction == Vector2.down))
         {
-            stellaCube.GetComponent<RectTransform>().sizeDelta = new Vector2(30, 60);
+            this.stellaCube.GetComponent<RectTransform>().sizeDelta = new Vector2(30, 60);
         }
 
     }

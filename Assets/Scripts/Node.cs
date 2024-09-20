@@ -12,11 +12,10 @@ namespace CLinkedList
 {
     public class Nodo<T>
     {
-        public T Dato { get; set; }
+        public string Dato { get; set; }
+        public Nodo<string> Siguiente { get; internal set; }
 
-        public Nodo<T> Siguiente { get; internal set; }
-
-        public Nodo(T dato)
+        public Nodo(string dato)
         {
             this.Dato = dato;
         }

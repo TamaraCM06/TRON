@@ -16,10 +16,5 @@ namespace Moto
                 Debug.Log("Bot died");
                 Destroy(panel);
             }
-            else
-            {
-                print("nothing");
-            }
-        }
-    }
+        }    }
 }
